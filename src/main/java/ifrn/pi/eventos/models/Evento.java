@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Evento {
 	
 	@Id
-	@GeneratedValue(trategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String local;
@@ -35,6 +35,11 @@ public class Evento {
 	}
 	public void setLocal(String local) {
 		this.local = local;
+	}
+	@Override
+	public String toString() {
+		return "Evento [id=" + id + ", nome=" + nome + ", local=" + local + ", data=" + data + ", horario=" + horario
+				+ "]";
 	}
 	public String getData() {
 		return data;
