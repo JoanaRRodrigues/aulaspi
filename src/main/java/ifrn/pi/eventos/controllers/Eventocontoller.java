@@ -86,6 +86,32 @@ public class Eventocontoller {
 		
 		return "redirect:/eventos/{idEvento}";
 	}
+	
+	//@GetMapping("/{id}/selecionar")
+	//public String selecionarEvento(@PathVariable Long id) {
+		
+		//Optional<Evento> opt = er.findById(id);
+		//if(opt.isEmpty()) {
+		//	return "redirect:/evento";
+		//}
+	//}
+	
+	@GetMapping("/{id}/remover")
+	public String apagarEvento(@PathVariable Long id) {
+		
+		Optional<Evento> opt = er.findById(id);
+		
+		if(!opt.isEmpty()) {
+			Evento evento = opt.get();
+			
+			List<Convidado> convidados = cr.findByEvento(evento);
+			
+			cr.deleteAll(convidados);
+			er.delete(evento);
+		}
+		
+		return "redirect:/eventos";
+	}
 
 }
 
